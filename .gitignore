@@ -6,3 +6,6 @@ haters/
 .build/
 layout.md
 variables.env
+sick-fits/backend/yarn.lock
+sick-fits/frontend/yarn.lock
+.history
