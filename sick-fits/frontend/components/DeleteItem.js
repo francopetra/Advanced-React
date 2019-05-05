@@ -20,7 +20,6 @@ class DeleteItem extends Component {
         //2. Filter eleted item out of the page
         data.items = data.items.filter(item => item.id !== payload.data.deleteItem.id)
         //3. Restore items w/o the one we want to delete
-        console.log(data)
         cache.writeQuery({ query: ALL_ITEMS_QUERY, data})
     }
 
@@ -31,9 +30,12 @@ class DeleteItem extends Component {
         variables={{id: this.props.id}}
         update={this.update}> 
         {(deleteItem, {error}) => (
-      <button onClick={() => {
+      <button 
+      onClick={() => {
       if (confirm('Are you sure you want to delete this?')) {
-          deleteItem();
+          deleteItem().catch(err => {
+            alert(err.message)
+          });
       }
     }}>
         {this.props.children}
